@@ -1,39 +1,19 @@
-def check_delimiters(expression):
-    pairs = {")": "(", "]": "[", "}": "{"}
-    # stack to store opening delimiters
-    stack = []
-
-    for char in expression:
-        if char in "([{":
-            stack.append(char)
-        elif char in ")]}":
-            # check if the top of the stack (stack[-1]) matches the expected opening delimiter
-            if not stack or stack[-1] != pairs[char]:
-                return "Несиметрично"
-            # Match found, pop the stack
-            stack.pop()
-
-    # if stack is empty, all delimiters matched
-    return "Симетрично" if not stack else "Несиметрично"
-
-
-def main():
-    print("\n|              Test case 1            |")
-    print("|-------------------------------------|")
-
-    test_cases = ["( ){[ 1 ]( 1 + 3 )( ){ }}", "( 23 ( 2 - 3);", "( 11 }"]
-
-    for test in test_cases:
-        result = check_delimiters(test)
-        print(f"{test}: {result}")
-
-    print("\n|                     Test case 2                    |")
-    print("|----------------------------------------------------|")
-
-    input_expression = input("Введіть Ваш рядок з розділювачами (, ), [, ], {, }: ")
-    result = check_delimiters(input_expression)
-    print(result)
-
-
-if __name__ == "__main__":
-    main()
+"""
+Наведемо приклад виконання коду для кількості дисків n = 3. На початковому стрижні вони розміщені так: [3, 2, 1], де 3 — найбільший диск, а 1 — найменший.
+Початковий стан: {'A': [3, 2, 1], 'B': [], 'C': []}
+Перемістити диск з A на C: 1
+Проміжний стан: {'A': [3, 2], 'B': [], 'C': [1]}
+Перемістити диск з A на B: 2
+Проміжний стан: {'A': [3], 'B': [2], 'C': [1]}
+Перемістити диск з C на B: 1
+Проміжний стан: {'A': [3], 'B': [2, 1], 'C': []}
+Перемістити диск з A на C: 3
+Проміжний стан: {'A': [], 'B': [2, 1], 'C': [3]}
+Перемістити диск з B на A: 1
+Проміжний стан: {'A': [1], 'B': [2], 'C': [3]}
+Перемістити диск з B на C: 2
+Проміжний стан: {'A': [1], 'B': [], 'C': [3, 2]}
+Перемістити диск з A на C: 1
+Проміжний стан: {'A': [], 'B': [], 'C': [3, 2, 1]}
+Кінцевий стан: {'A': [], 'B': [], 'C': [3, 2, 1]}
+"""
